@@ -13,12 +13,7 @@ HOST = os.getenv("DB_HOST")
 DBNAME = os.getenv("DB_NAME")
 USER = os.getenv("DB_USER")
 PASSWORD = os.getenv("DB_PASSWORD")
-print(HOST)
-print(DBNAME)
-print(USER)
-print(PASSWORD)
-
-sslmode = "disable"
+sslmode = os.getenv("sslmode")
 
 conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(HOST, USER, DBNAME, PASSWORD, sslmode)
 conn = psycopg2.connect(conn_string)
