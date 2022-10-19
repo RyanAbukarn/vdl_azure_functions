@@ -14,7 +14,7 @@ DBNAME = os.getenv("DB_NAME")
 USER = os.getenv("DB_USER")
 PASSWORD = os.getenv("DB_PASSWORD")
 sslmode = os.getenv("sslmode")
-
+print(os.environ)
 conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(HOST, USER, DBNAME, PASSWORD, sslmode)
 conn = psycopg2.connect(conn_string)
 print("Connection established")
@@ -25,10 +25,10 @@ cursor = conn.cursor(cursor_factory=RealDictCursor)
 
 @app.get("/api/data-logger")
 async def data_logger_index():
-    # cursor.execute("SELECT * FROM datalogger;")
-    # rows = cursor.fetchall()
+    cursor.execute("SELECT * FROM datalogger;")
+    rows = cursor.fetchall()
     return {
-        "data": os.environ,
+        "data": rows,
     }
 
 
